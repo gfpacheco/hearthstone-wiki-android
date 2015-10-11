@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 public class CardListFragment extends ListFragment {
 
-    String[] mCardsArray = {
-            "Anduin Wrynn",
-            "Berserking",
-            "Blessing of Kings"
+    Card[] mCardsArray = {
+            new Card("Anduin Wrynn"),
+            new Card("Berserking"),
+            new Card("Blessing of Kings")
     };
 
     public CardListFragment() {
@@ -25,7 +24,7 @@ public class CardListFragment extends ListFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_card_list, container);
 
-        setListAdapter(new ArrayAdapter<>(getActivity(), R.layout.list_item_card, mCardsArray));
+        setListAdapter(new CardAdapter(getActivity(), mCardsArray));
 
         return rootView;
     }
