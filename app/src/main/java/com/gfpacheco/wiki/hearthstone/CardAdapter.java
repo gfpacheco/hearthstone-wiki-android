@@ -7,24 +7,30 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class CardAdapter extends BaseAdapter {
 
     private final LayoutInflater mInflater;
-    private final Card[] mCards;
+    private List<Card> mCards;
 
-    public CardAdapter(Context context, Card[] cards) {
+    public CardAdapter(Context context) {
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mCards = cards;
+    }
+
+    public void setData(List<Card> data) {
+        mCards = data;
+        notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return mCards.length;
+        return mCards == null ? 0 : mCards.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return mCards[position];
+    public Card getItem(int position) {
+        return mCards.get(position);
     }
 
     @Override
@@ -44,7 +50,7 @@ public class CardAdapter extends BaseAdapter {
             viewHolder = (CardViewHolder) convertView.getTag();
         }
 
-        Card card = mCards[position];
+        Card card = getItem(position);
 
         viewHolder.nameView.setText(card.name);
 
