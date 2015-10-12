@@ -1,7 +1,7 @@
 package com.gfpacheco.wiki.hearthstone;
 
-import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.support.v4.content.AsyncTaskLoader;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;

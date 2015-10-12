@@ -1,10 +1,10 @@
 package com.gfpacheco.wiki.hearthstone;
 
 
-import android.app.ListFragment;
-import android.app.LoaderManager;
-import android.content.Loader;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.view.View;
 import android.widget.ListView;
 
