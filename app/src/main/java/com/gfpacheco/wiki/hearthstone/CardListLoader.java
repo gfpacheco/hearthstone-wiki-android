@@ -15,9 +15,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardLoader extends AsyncTaskLoader<List<Card>> {
+public class CardListLoader extends AsyncTaskLoader<List<Card>> {
 
-    public CardLoader(Context context) {
+    public CardListLoader(Context context) {
         super(context);
     }
 

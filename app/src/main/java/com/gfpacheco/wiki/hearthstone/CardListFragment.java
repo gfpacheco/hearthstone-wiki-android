@@ -30,7 +30,7 @@ public class CardListFragment extends ListFragment implements LoaderManager.Load
 
     @Override
     public Loader<List<Card>> onCreateLoader(int id, Bundle args) {
-        return new CardLoader(getActivity());
+        return new CardListLoader(getActivity());
     }
 
     @Override
