@@ -5,6 +5,8 @@ import android.app.ListFragment;
 import android.app.LoaderManager;
 import android.content.Loader;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
 
 import java.util.List;
 
@@ -48,4 +50,14 @@ public class CardListFragment extends ListFragment implements LoaderManager.Load
     public void onLoaderReset(Loader<List<Card>> loader) {
         mAdapter.setData(null);
     }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        ((OnListItemClickCallback) getActivity()).onListItemClick(mAdapter.getItem(position));
+    }
+
+    public interface OnListItemClickCallback {
+        void onListItemClick(Card card);
+    }
+
 }
