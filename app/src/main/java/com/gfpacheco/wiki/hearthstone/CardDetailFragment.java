@@ -1,9 +1,11 @@
 package com.gfpacheco.wiki.hearthstone;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +27,13 @@ public class CardDetailFragment extends Fragment implements LoaderManager.Loader
         return fragment;
     }
 
-    private TextView mTextViewName;
     private ImageView mImageViewCover;
+    private TextView mTextViewName;
+    private TextView mTextViewType;
+    private TextView mTextViewText;
+    private TextView mTextViewCost;
+    private TextView mTextViewAttack;
+    private TextView mTextViewHealth;
 
     public CardDetailFragment() {
         // Required empty public constructor
@@ -43,8 +50,13 @@ public class CardDetailFragment extends Fragment implements LoaderManager.Loader
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_card_detail, container, false);
 
-        mTextViewName = (TextView) rootView.findViewById(R.id.text_view_name);
         mImageViewCover = (ImageView) rootView.findViewById(R.id.image_view_cover);
+        mTextViewName = (TextView) rootView.findViewById(R.id.text_view_name);
+        mTextViewType = (TextView) rootView.findViewById(R.id.text_view_type);
+        mTextViewText = (TextView) rootView.findViewById(R.id.text_view_text);
+        mTextViewCost = (TextView) rootView.findViewById(R.id.text_view_cost);
+        mTextViewAttack = (TextView) rootView.findViewById(R.id.text_view_attack);
+        mTextViewHealth = (TextView) rootView.findViewById(R.id.text_view_health);
 
         return rootView;
     }
@@ -56,8 +68,14 @@ public class CardDetailFragment extends Fragment implements LoaderManager.Loader
 
     @Override
     public void onLoadFinished(Loader<Card> loader, Card card) {
+        Context context = getActivity();
+        Picasso.with(context).load(card.img).into(mImageViewCover);
         mTextViewName.setText(card.name);
-        Picasso.with(getActivity()).load(card.img).into(mImageViewCover);
+        mTextViewType.setText(card.type);
+        if (card.text != null) mTextViewText.setText(Html.fromHtml(card.text));
+        mTextViewCost.setText(context.getString(R.string.card_detail_cost, card.cost));
+        mTextViewAttack.setText(context.getString(R.string.card_detail_attack, card.attack));
+        mTextViewHealth.setText(context.getString(R.string.card_detail_health, card.health));
     }
 
     @Override
